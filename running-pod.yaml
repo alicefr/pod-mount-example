@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: running-pod
+spec:
+  volumes:
+    - name: test-mount
+      hostPath:
+        path: /test-mount-pv
+        type: DirectoryOrCreate
+  containers:
+  - name: test-mount
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    volumeMounts:
+    - mountPath: "/test"
+      name: test-mount
