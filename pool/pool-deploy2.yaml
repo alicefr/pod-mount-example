@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pool
+  labels:
+    app: pool
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pool
+  template:
+    metadata:
+      labels:
+        app: pool
+    spec:
+      containers:
+      - name: test1
+        image: fedora
+        args:
+        - sleep
+        - "1000000"
+        volumeMounts:
+        - mountPath: "/pool"
+          name: pool
+        - mountPath: "/pool/pvc1"
+          name: pvc1
+        - mountPath: "/pool/pvc2"
+          name: pvc2
+      volumes:
+      - name: pool
+        hostPath:
+          path: /pool-volumes
+          type: Directory
+      - name: pvc1
+        persistentVolumeClaim:
+          claimName: pvc1
+      - name: pvc2
+        persistentVolumeClaim:
+          claimName: pvc2

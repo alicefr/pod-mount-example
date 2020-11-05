@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: running-pod
+spec:
+  volumes:
+    - name: pool
+      hostPath:
+        path: /pool-volumes
+        type: DirectoryOrCreate
+  containers:
+  - name: running-pod
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    volumeMounts:
+    - mountPath: "/pool"
+      name: pool
+      mountPropagation: "HostToContainer"
