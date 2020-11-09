@@ -38,7 +38,7 @@ NAME             STATUS   VOLUME                                     CAPACITY   
 mount-pv-claim   Bound    pvc-7e2291f4-5aaf-4e87-9397-e8a2a4aea4a0   300Mi      RWO            standard       2m13s
 ```
 
-You can create an additional container to create a test file and verify that the mount corrctly works:
+You can create an additional container to create a test file and verify that the mount correctly works:
 ```bash
 $ $ kubectl apply -f pod.yaml 
 pod/test1 created
